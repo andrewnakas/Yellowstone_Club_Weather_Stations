@@ -50,6 +50,13 @@ async function loadData() {
 
         const data = await response.json();
 
+        // Check if data is empty
+        if (Object.keys(data).length === 0) {
+            document.getElementById('loading').innerHTML =
+                'Waiting for initial data fetch...<br><small>Please run the "Fetch Weather Data" GitHub Action to populate data.</small>';
+            return;
+        }
+
         // Check if data has changed
         const metadataResponse = await fetch(`${DATA_PATH}metadata.json?_=${Date.now()}`);
         const metadata = await metadataResponse.json();
