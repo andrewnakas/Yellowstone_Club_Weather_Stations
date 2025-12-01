@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellowstone Club Weather Stations</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@3.0.0/index.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .last-update {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .controls {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        label {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            background: white;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 20px;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .error {
+            background: #fee;
+            color: #c00;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .station-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .station-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .station-checkbox input {
+            cursor: pointer;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>❄️ Yellowstone Club Weather Stations</h1>
+            <div class="last-update">
+                <span class="live-indicator"></span>
+                <span id="lastUpdate">Loading...</span>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <div>
+                    <label for="timeRange">Time Range:</label>
+                    <select id="timeRange">
+                        <option value="24">Last 24 Hours</option>
+                        <option value="48">Last 48 Hours</option>
+                        <option value="72">Last 3 Days</option>
+                        <option value="168" selected>Last 7 Days</option>
+                    </select>
+                </div>
+
+                <div class="station-selector">
+                    <label>Stations:</label>
+                    <div class="station-checkbox">
+                        <input type="checkbox" id="station-YCTIM" value="YCTIM" checked>
+                        <label for="station-YCTIM">Timberline</label>
+                    </div>
+                    <div class="station-checkbox">
+                        <input type="checkbox" id="station-YCAND" value="YCAND" checked>
+                        <label for="station-YCAND">Andesite</label>
+                    </div>
+                    <div class="station-checkbox">
+                        <input type="checkbox" id="station-YCAMS" value="YCAMS" checked>
+                        <label for="station-YCAMS">American Spirit</label>
+                    </div>
+                    <div class="station-checkbox">
+                        <input type="checkbox" id="station-YCBAS" value="YCBAS" checked>
+                        <label for="station-YCBAS">Base</label>
+                    </div>
+                    <div class="station-checkbox">
+                        <input type="checkbox" id="station-YCGBR" value="YCGBR" checked>
+                        <label for="station-YCGBR">Great Bear</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Loading weather data...</div>
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div id="statsGrid" class="stats-grid" style="display: none;"></div>
+
+        <div id="chartsGrid" class="charts-grid"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
