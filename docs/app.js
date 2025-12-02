@@ -68,8 +68,10 @@ function setupEventListeners() {
             const chartsGrid = document.getElementById('chartsGrid');
             if (overlayMode) {
                 chartsGrid.classList.add('overlay-mode');
+                document.body.classList.add('overlay-active');
             } else {
                 chartsGrid.classList.remove('overlay-mode');
+                document.body.classList.remove('overlay-active');
             }
             updateCharts();
         });
