@@ -215,15 +215,23 @@
         }
 
         .charts-grid.overlay-mode {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 500px);
+            min-height: 600px;
         }
 
         .charts-grid.overlay-mode .chart-container {
-            position: relative;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
         }
 
-        .charts-grid.overlay-mode canvas {
-            max-height: 600px;
+        .charts-grid.overlay-mode .chart-container canvas {
+            flex: 1;
+            max-height: none !important;
+            height: 100% !important;
         }
     </style>
 </head>

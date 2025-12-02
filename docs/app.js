@@ -179,9 +179,12 @@ function parseWeatherData(data) {
     // Validate snowfall values (filter out anomalies)
     const validateSnowfall = (val) => {
         if (val === null) return null;
-        // 24-hour snowfall should never exceed 72" (6 feet in 24 hours is extreme)
-        // This filters out obvious data glitches
-        if (val > 72) return null;
+        // 24-hour snowfall rarely exceeds 12" (1 foot) - anything higher is likely a sensor error
+        // Most extreme snowfall events are 2-3" per hour = 24-36" in 24 hours max
+        if (val > 12) {
+            console.warn(`Anomalous 24h snowfall detected: ${val}" (filtered out)`);
+            return null;
+        }
         return val;
     };
 
