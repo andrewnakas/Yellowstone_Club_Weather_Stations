@@ -331,6 +331,9 @@ function renderCharts() {
     if (enabledCharts.has('swe')) {
         createChart('swe', 'Snow Water Equivalent (inches)', 'line');
     }
+
+    // Update chart count for grid layout
+    chartsGrid.setAttribute('data-chart-count', enabledCharts.size);
 }
 
 function renderStats() {

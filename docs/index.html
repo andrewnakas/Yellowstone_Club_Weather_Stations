@@ -251,29 +251,55 @@
         }
 
         .charts-grid.overlay-mode {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-auto-rows: 1fr;
             height: calc(100vh - 140px);
-            gap: 3px;
+            gap: 5px;
+        }
+
+        /* Dynamically adjust grid based on number of charts */
+        .charts-grid.overlay-mode[data-chart-count="1"] {
+            grid-template-columns: 1fr;
+        }
+
+        .charts-grid.overlay-mode[data-chart-count="2"] {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .charts-grid.overlay-mode[data-chart-count="3"] {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .charts-grid.overlay-mode[data-chart-count="4"] {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        .charts-grid.overlay-mode[data-chart-count="5"],
+        .charts-grid.overlay-mode[data-chart-count="6"] {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
         }
 
         .charts-grid.overlay-mode .chart-container {
-            flex: 1;
-            min-height: 0;
             display: flex;
             flex-direction: column;
             padding: 5px 10px;
             margin: 0;
+            min-height: 0;
         }
 
         .charts-grid.overlay-mode .chart-title {
             font-size: 14px;
             margin-bottom: 5px;
+            flex-shrink: 0;
         }
 
         .charts-grid.overlay-mode .chart-container canvas {
             flex: 1;
             max-height: none !important;
+            width: 100% !important;
             height: 100% !important;
         }
     </style>
