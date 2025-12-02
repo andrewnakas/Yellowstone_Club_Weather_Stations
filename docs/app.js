@@ -436,22 +436,36 @@ function createChart(dataKey, title, type = 'line') {
         charts[dataKey].destroy();
     }
 
-    // Create new chart
+    // Create new chart with overlay-specific settings
+    const isOverlay = overlayMode;
+
     charts[dataKey] = new Chart(canvas, {
         type: type,
         data: { datasets },
         options: {
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: isOverlay ? 2 : 10
+            },
             interaction: {
                 intersect: false,
                 mode: 'index'
             },
             plugins: {
                 legend: {
+                    display: !isOverlay,
                     position: 'top',
+                    labels: {
+                        font: {
+                            size: isOverlay ? 8 : 12
+                        },
+                        padding: isOverlay ? 3 : 10,
+                        boxWidth: isOverlay ? 20 : 40
+                    }
                 },
                 tooltip: {
+                    enabled: !isOverlay,
                     callbacks: {
                         title: (items) => {
                             return new Date(items[0].parsed.x).toLocaleString();
@@ -470,15 +484,33 @@ function createChart(dataKey, title, type = 'line') {
                         }
                     },
                     title: {
-                        display: true,
-                        text: 'Time'
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: isOverlay ? 8 : 11
+                        },
+                        maxRotation: isOverlay ? 0 : 45,
+                        autoSkip: true,
+                        maxTicksLimit: isOverlay ? 6 : 10
+                    },
+                    grid: {
+                        display: !isOverlay
                     }
                 },
                 y: {
                     beginAtZero: dataKey === 'precipitation',
                     title: {
-                        display: true,
-                        text: title
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: isOverlay ? 8 : 11
+                        },
+                        maxTicksLimit: isOverlay ? 5 : 8
+                    },
+                    grid: {
+                        color: isOverlay ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.1)'
                     }
                 }
             }
@@ -552,7 +584,9 @@ function createWindDirectionChart() {
         charts['windDirection'].destroy();
     }
 
-    // Create chart
+    // Create chart with overlay-specific settings
+    const isOverlay = overlayMode;
+
     charts['windDirection'] = new Chart(canvas, {
         type: 'scatter',
         data: {
@@ -560,16 +594,20 @@ function createWindDirectionChart() {
                 label: 'Dominant Wind Direction',
                 data: chartData,
                 backgroundColor: '#667eea',
-                pointRadius: 8,
-                pointHoverRadius: 10
+                pointRadius: isOverlay ? 4 : 8,
+                pointHoverRadius: isOverlay ? 6 : 10
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: isOverlay ? 2 : 10
+            },
             plugins: {
                 legend: { display: false },
                 tooltip: {
+                    enabled: !isOverlay,
                     callbacks: {
                         title: (items) => new Date(items[0].raw.x).toLocaleDateString(),
                         label: (item) => `Direction: ${item.raw.direction}`
@@ -583,19 +621,36 @@ function createWindDirectionChart() {
                         unit: 'day',
                         displayFormats: { day: 'MMM dd' }
                     },
-                    title: { display: true, text: 'Date' }
+                    title: { display: false },
+                    ticks: {
+                        font: {
+                            size: isOverlay ? 8 : 11
+                        },
+                        maxRotation: 0,
+                        autoSkip: true,
+                        maxTicksLimit: isOverlay ? 6 : 10
+                    },
+                    grid: {
+                        display: !isOverlay
+                    }
                 },
                 y: {
                     min: 0,
                     max: 360,
                     ticks: {
                         stepSize: 45,
+                        font: {
+                            size: isOverlay ? 8 : 11
+                        },
                         callback: (value) => {
                             const dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
                             return dirs[Math.round(value / 45)];
                         }
                     },
-                    title: { display: true, text: 'Direction' }
+                    title: { display: false },
+                    grid: {
+                        color: isOverlay ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.1)'
+                    }
                 }
             }
         }
