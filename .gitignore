@@ -27,6 +27,7 @@ env/
 
 # Playwright
 .playwright/
+debug_*.png
 
 # IDEs
 .vscode/
