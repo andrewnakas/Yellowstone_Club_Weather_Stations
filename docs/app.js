@@ -465,7 +465,14 @@ function createChart(dataKey, title, type = 'line') {
                     }
                 },
                 tooltip: {
-                    enabled: !isOverlay,
+                    enabled: true,
+                    bodyFont: {
+                        size: isOverlay ? 10 : 12
+                    },
+                    titleFont: {
+                        size: isOverlay ? 10 : 12
+                    },
+                    padding: isOverlay ? 6 : 10,
                     callbacks: {
                         title: (items) => {
                             return new Date(items[0].parsed.x).toLocaleString();
@@ -607,7 +614,14 @@ function createWindDirectionChart() {
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    enabled: !isOverlay,
+                    enabled: true,
+                    bodyFont: {
+                        size: isOverlay ? 10 : 12
+                    },
+                    titleFont: {
+                        size: isOverlay ? 10 : 12
+                    },
+                    padding: isOverlay ? 6 : 10,
                     callbacks: {
                         title: (items) => new Date(items[0].raw.x).toLocaleDateString(),
                         label: (item) => `Direction: ${item.raw.direction}`
