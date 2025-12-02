@@ -175,6 +175,56 @@
             font-weight: 700;
             color: #667eea;
         }
+
+        .chart-controls {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-toggles {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .chart-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .chart-toggle input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .chart-toggle label {
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .overlay-control {
+            padding-top: 15px;
+            border-top: 2px solid #e5e7eb;
+            margin-top: 10px;
+        }
+
+        .charts-grid.overlay-mode {
+            grid-template-columns: 1fr;
+        }
+
+        .charts-grid.overlay-mode .chart-container {
+            position: relative;
+        }
+
+        .charts-grid.overlay-mode canvas {
+            max-height: 600px;
+        }
     </style>
 </head>
 <body>
@@ -229,6 +279,41 @@
         <div id="error" class="error" style="display: none;"></div>
 
         <div id="statsGrid" class="stats-grid" style="display: none;"></div>
+
+        <div class="chart-controls" id="chartControls" style="display: none;">
+            <div class="chart-toggles">
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-temperature" checked>
+                    <label for="toggle-temperature">Temperature</label>
+                </div>
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-windSpeed" checked>
+                    <label for="toggle-windSpeed">Wind Speed</label>
+                </div>
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-windDirection" checked>
+                    <label for="toggle-windDirection">Wind Direction</label>
+                </div>
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-snowDepth" checked>
+                    <label for="toggle-snowDepth">Snow Depth</label>
+                </div>
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-newSnow24h" checked>
+                    <label for="toggle-newSnow24h">24h Snowfall</label>
+                </div>
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-swe" checked>
+                    <label for="toggle-swe">SWE</label>
+                </div>
+            </div>
+            <div class="overlay-control">
+                <div class="chart-toggle">
+                    <input type="checkbox" id="toggle-overlay">
+                    <label for="toggle-overlay">Show all charts in single view (overlay mode)</label>
+                </div>
+            </div>
+        </div>
 
         <div id="chartsGrid" class="charts-grid"></div>
     </div>

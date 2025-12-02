@@ -15,6 +15,8 @@ let charts = {};
 let lastUpdateTimestamp = null;
 let selectedStations = new Set(['YCTIM', 'YCAND', 'YCAMS', 'YCBAS', 'YCGBR']);
 let timeRangeHours = 168;
+let enabledCharts = new Set(['temperature', 'windSpeed', 'windDirection', 'snowDepth', 'newSnow24h', 'swe']);
+let overlayMode = false;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -41,6 +43,37 @@ function setupEventListeners() {
             updateCharts();
         });
     });
+
+    // Chart toggle checkboxes
+    const chartTypes = ['temperature', 'windSpeed', 'windDirection', 'snowDepth', 'newSnow24h', 'swe'];
+    chartTypes.forEach(type => {
+        const checkbox = document.getElementById(`toggle-${type}`);
+        if (checkbox) {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    enabledCharts.add(type);
+                } else {
+                    enabledCharts.delete(type);
+                }
+                updateCharts();
+            });
+        }
+    });
+
+    // Overlay mode toggle
+    const overlayCheckbox = document.getElementById('toggle-overlay');
+    if (overlayCheckbox) {
+        overlayCheckbox.addEventListener('change', (e) => {
+            overlayMode = e.target.checked;
+            const chartsGrid = document.getElementById('chartsGrid');
+            if (overlayMode) {
+                chartsGrid.classList.add('overlay-mode');
+            } else {
+                chartsGrid.classList.remove('overlay-mode');
+            }
+            updateCharts();
+        });
+    }
 }
 
 async function loadData() {
@@ -75,6 +108,7 @@ async function loadData() {
         }
 
         document.getElementById('loading').style.display = 'none';
+        document.getElementById('chartControls').style.display = 'block';
 
     } catch (error) {
         console.error('Error loading data:', error);
@@ -100,6 +134,7 @@ function parseWeatherData(data) {
         windSpeed: [],
         windDirection: [],
         snowDepth: [],
+        rawSnowDepth: [], // Keep raw values for debugging
         newSnow24h: [],
         swe: [],
         precipitation: []
@@ -199,7 +234,9 @@ function parseWeatherData(data) {
             result.temperature.push(tempIdx >= 0 ? parseValue(row[tempIdx]) : null);
             result.windSpeed.push(windSpeedIdx >= 0 ? parseValue(row[windSpeedIdx]) : null);
             result.windDirection.push(windDirIdx >= 0 ? row[windDirIdx] : null);
-            result.snowDepth.push(snowDepthIdx >= 0 ? parseValue(row[snowDepthIdx]) : null);
+            const rawSnow = snowDepthIdx >= 0 ? parseValue(row[snowDepthIdx]) : null;
+            result.rawSnowDepth.push(rawSnow);
+            result.snowDepth.push(rawSnow); // Will be smoothed later
             result.newSnow24h.push(newSnow24hIdx >= 0 ? validateSnowfall(parseValue(row[newSnow24hIdx])) : null);
             result.swe.push(sweIdx >= 0 ? validateSWE(parseValue(row[sweIdx])) : null);
             result.precipitation.push(precipIdx >= 0 ? parseValue(row[precipIdx]) : null);
@@ -210,6 +247,22 @@ function parseWeatherData(data) {
     }
 
     console.log('Parsed data points:', result.timestamps.length);
+
+    // Smooth snow depth to remove unrealistic spikes (max 5" change per hour)
+    for (let i = 1; i < result.snowDepth.length; i++) {
+        const current = result.snowDepth[i];
+        const previous = result.snowDepth[i - 1];
+
+        if (current !== null && previous !== null) {
+            const change = Math.abs(current - previous);
+            // If change exceeds 5 inches per hour, it's likely a sensor error
+            if (change > 5) {
+                console.warn(`Snow depth spike detected at index ${i}: ${previous}" -> ${current}" (${change}" change)`);
+                // Replace spike with interpolated value
+                result.snowDepth[i] = previous;
+            }
+        }
+    }
 
     return result;
 }
@@ -254,13 +307,25 @@ function renderCharts() {
     // Render statistics
     renderStats();
 
-    // Create charts
-    createChart('temperature', 'Temperature (°F)', 'line');
-    createChart('windSpeed', 'Wind Speed (mph)', 'line');
-    createWindDirectionChart();
-    createChart('snowDepth', 'Snow Depth (inches)', 'line');
-    createChart('newSnow24h', '24-Hour Snowfall (inches)', 'bar');
-    createChart('swe', 'Snow Water Equivalent (inches)', 'line');
+    // Create charts based on enabled toggles
+    if (enabledCharts.has('temperature')) {
+        createChart('temperature', 'Temperature (°F)', 'line');
+    }
+    if (enabledCharts.has('windSpeed')) {
+        createChart('windSpeed', 'Wind Speed (mph)', 'line');
+    }
+    if (enabledCharts.has('windDirection')) {
+        createWindDirectionChart();
+    }
+    if (enabledCharts.has('snowDepth')) {
+        createChart('snowDepth', 'Snow Depth (inches)', 'line');
+    }
+    if (enabledCharts.has('newSnow24h')) {
+        createChart('newSnow24h', '24-Hour Snowfall (inches)', 'bar');
+    }
+    if (enabledCharts.has('swe')) {
+        createChart('swe', 'Snow Water Equivalent (inches)', 'line');
+    }
 }
 
 function renderStats() {
