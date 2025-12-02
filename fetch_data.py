@@ -24,55 +24,72 @@ HOURS = 168  # 7 days of data
 
 def fetch_station_data(page, site_id):
     """Fetch data for a single station."""
-    url = f"https://www.weather.gov/wrh/timeseries?site={site_id}&hours={HOURS}&units=english"
+    url = f"https://www.weather.gov/wrh/timeseries?site={site_id}&hours={HOURS}&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 
     try:
         print(f"  Loading URL: {url}")
+
+        # Set user agent to mimic Chrome
+        page.set_extra_http_headers({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        })
+
         page.goto(url, timeout=60000)
-        page.wait_for_load_state('networkidle', timeout=60000)
 
-        # Wait for content to load
-        time.sleep(5)
+        # Wait for table to load
+        try:
+            page.wait_for_selector('table', timeout=45000)
+        except:
+            print(f"  WARNING: Table selector timeout for {site_id}")
 
-        # Try multiple selectors to find the data
-        data_text = ""
+        time.sleep(2)
 
-        # Try 1: Look for pre tag
-        if page.locator('pre').count() > 0:
-            data_text = page.locator('pre').first.text_content()
-            print(f"  Found data in <pre> tag ({len(data_text)} chars)")
+        # Extract table data using JavaScript
+        content = page.evaluate('''() => {
+            const tables = document.querySelectorAll('table');
+            let result = {headers: [], rows: []};
 
-        # Try 2: Look for textarea
-        elif page.locator('textarea').count() > 0:
-            data_text = page.locator('textarea').first.text_content()
-            print(f"  Found data in <textarea> ({len(data_text)} chars)")
+            for (const table of tables) {
+                const rows = table.querySelectorAll('tr');
+                if (rows.length === 0) continue;
 
-        # Try 3: Get body text
-        else:
-            body = page.locator('body').text_content()
-            # Look for data patterns (dates like 2024-12-01)
-            if '202' in body and 'UTC' in body:
-                data_text = body
-                print(f"  Using full body text ({len(data_text)} chars)")
-            else:
-                print(f"  WARNING: No data found for {site_id}")
-                # Save page screenshot for debugging
-                try:
-                    screenshot_path = f"debug_{site_id}.png"
-                    page.screenshot(path=screenshot_path)
-                    print(f"  Saved screenshot to {screenshot_path}")
-                except:
-                    pass
+                // Get headers
+                const headerCells = rows[0].querySelectorAll('th, td');
+                if (headerCells.length > 0) {
+                    const headerText = Array.from(headerCells).map(cell => cell.textContent.trim());
+
+                    // Check if this looks like weather data (has Date or Time)
+                    if (headerText.some(h => h.includes('Date') || h.includes('Time'))) {
+                        result.headers = headerText;
+
+                        // Get data rows
+                        for (let i = 1; i < rows.length; i++) {
+                            const cells = rows[i].querySelectorAll('td');
+                            if (cells.length > 0) {
+                                const rowData = Array.from(cells).map(cell => cell.textContent.trim());
+                                result.rows.push(rowData);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            return result;
+        }''')
+
+        print(f"  Found {len(content['rows'])} data rows")
 
         return {
             'station_id': site_id,
             'station_name': STATIONS.get(site_id, site_id),
             'timestamp': datetime.utcnow().isoformat(),
-            'data': data_text,
+            'data': content,
             'url': url
         }
     except Exception as e:
-        print(f"Error fetching {site_id}: {str(e)}")
+        print(f"  Error fetching {site_id}: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return {
             'station_id': site_id,
             'station_name': STATIONS.get(site_id, site_id),

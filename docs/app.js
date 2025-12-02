@@ -92,9 +92,8 @@ function processData() {
     }
 }
 
-function parseWeatherData(dataText) {
-    // Parse the weather.gov text format
-    const lines = dataText.split('\n');
+function parseWeatherData(data) {
+    // Data is now structured JSON with headers and rows
     const result = {
         timestamps: [],
         temperature: [],
@@ -103,48 +102,59 @@ function parseWeatherData(dataText) {
         precipitation: []
     };
 
-    // Find data section (after header lines)
-    let dataStarted = false;
+    // Check if data is empty or has old text format
+    if (!data || typeof data === 'string') {
+        return result;
+    }
 
-    for (const line of lines) {
-        if (!line.trim()) continue;
+    if (!data.headers || !data.rows || data.rows.length === 0) {
+        return result;
+    }
 
-        // Skip header lines
-        if (line.includes('UTC') || line.includes('---') || line.includes('DATE')) {
-            dataStarted = true;
-            continue;
-        }
+    // Find column indices from headers
+    const headers = data.headers.map(h => h.toLowerCase());
+    const dateIdx = headers.findIndex(h => h.includes('date'));
+    const timeIdx = headers.findIndex(h => h.includes('time'));
+    const tempIdx = headers.findIndex(h => h.includes('temp') && !h.includes('dew'));
+    const windIdx = headers.findIndex(h => h.includes('wind') && h.includes('speed'));
+    const snowIdx = headers.findIndex(h => h.includes('snow') && h.includes('depth'));
+    const precipIdx = headers.findIndex(h => h.includes('precip'));
 
-        if (!dataStarted) continue;
+    // Parse numeric value helper
+    const parseValue = (val) => {
+        if (!val || val === 'M' || val === 'MM' || val === '') return null;
+        const num = parseFloat(val);
+        return isNaN(num) ? null : num;
+    };
 
-        // Parse data line
-        const parts = line.trim().split(/\s+/);
-        if (parts.length < 3) continue;
-
+    // Process each row
+    for (const row of data.rows) {
         try {
-            // Typical format: YYYY-MM-DD HH:MM temp wind snow precip ...
-            const dateTime = `${parts[0]} ${parts[1]}`;
-            const timestamp = new Date(dateTime);
+            // Build timestamp from date/time columns
+            let timestampStr = '';
+            if (dateIdx >= 0 && row[dateIdx]) {
+                timestampStr = row[dateIdx];
+                if (timeIdx >= 0 && row[timeIdx]) {
+                    timestampStr += ' ' + row[timeIdx];
+                }
+            }
+
+            if (!timestampStr) continue;
+
+            // Parse timestamp (remove timezone abbreviations if present)
+            timestampStr = timestampStr.replace(/\s+(UTC|MST|MDT|PST|PDT)$/, '');
+            const timestamp = new Date(timestampStr);
 
             if (isNaN(timestamp.getTime())) continue;
 
             result.timestamps.push(timestamp);
-
-            // Parse numeric values (they might be 'M' for missing)
-            const parseValue = (val) => {
-                if (!val || val === 'M' || val === 'MM') return null;
-                const num = parseFloat(val);
-                return isNaN(num) ? null : num;
-            };
-
-            // Adjust indices based on actual data format
-            result.temperature.push(parseValue(parts[2]));
-            result.windSpeed.push(parseValue(parts[3]));
-            result.snowDepth.push(parseValue(parts[4]));
-            result.precipitation.push(parseValue(parts[5]));
+            result.temperature.push(tempIdx >= 0 ? parseValue(row[tempIdx]) : null);
+            result.windSpeed.push(windIdx >= 0 ? parseValue(row[windIdx]) : null);
+            result.snowDepth.push(snowIdx >= 0 ? parseValue(row[snowIdx]) : null);
+            result.precipitation.push(precipIdx >= 0 ? parseValue(row[precipIdx]) : null);
 
         } catch (e) {
-            console.warn('Error parsing line:', line, e);
+            console.warn('Error parsing row:', row, e);
         }
     }
 
