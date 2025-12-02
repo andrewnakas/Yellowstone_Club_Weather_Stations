@@ -1,7 +1,10 @@
 {
   "station_id": "YCGBR",
   "station_name": "Great Bear",
-  "timestamp": "2025-12-02T02:01:17.146494",
-  "data": "",
-  "url": "https://www.weather.gov/wrh/timeseries?site=YCGBR&hours=168&units=english"
+  "timestamp": "2025-12-02T02:37:16.815579",
+  "data": {
+    "headers": [],
+    "rows": []
+  },
+  "url": "https://www.weather.gov/wrh/timeseries?site=YCGBR&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
