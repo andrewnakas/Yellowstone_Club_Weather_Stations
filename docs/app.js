@@ -141,6 +141,23 @@ function parseWeatherData(data) {
         return isNaN(num) ? null : num;
     };
 
+    // Validate snowfall values (filter out anomalies)
+    const validateSnowfall = (val) => {
+        if (val === null) return null;
+        // 24-hour snowfall should never exceed 72" (6 feet in 24 hours is extreme)
+        // This filters out obvious data glitches
+        if (val > 72) return null;
+        return val;
+    };
+
+    // Validate SWE values
+    const validateSWE = (val) => {
+        if (val === null) return null;
+        // SWE should never exceed 10" in a single reading (data glitch filter)
+        if (val > 10) return null;
+        return val;
+    };
+
     // Process each row
     for (const row of data.rows) {
         try {
@@ -183,8 +200,8 @@ function parseWeatherData(data) {
             result.windSpeed.push(windSpeedIdx >= 0 ? parseValue(row[windSpeedIdx]) : null);
             result.windDirection.push(windDirIdx >= 0 ? row[windDirIdx] : null);
             result.snowDepth.push(snowDepthIdx >= 0 ? parseValue(row[snowDepthIdx]) : null);
-            result.newSnow24h.push(newSnow24hIdx >= 0 ? parseValue(row[newSnow24hIdx]) : null);
-            result.swe.push(sweIdx >= 0 ? parseValue(row[sweIdx]) : null);
+            result.newSnow24h.push(newSnow24hIdx >= 0 ? validateSnowfall(parseValue(row[newSnow24hIdx])) : null);
+            result.swe.push(sweIdx >= 0 ? validateSWE(parseValue(row[sweIdx])) : null);
             result.precipitation.push(precipIdx >= 0 ? parseValue(row[precipIdx]) : null);
 
         } catch (e) {
