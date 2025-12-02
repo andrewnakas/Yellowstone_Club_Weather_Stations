@@ -112,18 +112,26 @@ function parseWeatherData(data) {
     }
 
     // Find column indices from headers
-    const headers = data.headers.map(h => h.toLowerCase());
-    const dateIdx = headers.findIndex(h => h.includes('date'));
-    const timeIdx = headers.findIndex(h => h.includes('time'));
+    const headers = data.headers.map(h => h.toLowerCase().replace(/\s+/g, ''));
+
+    // Look for date/time column (could be combined or separate)
+    const dateTimeIdx = headers.findIndex(h => h.includes('date') && h.includes('time'));
+    const dateIdx = dateTimeIdx >= 0 ? dateTimeIdx : headers.findIndex(h => h.includes('date'));
+    const timeIdx = dateTimeIdx >= 0 ? -1 : headers.findIndex(h => h.includes('time'));
+
     const tempIdx = headers.findIndex(h => h.includes('temp') && !h.includes('dew'));
     const windIdx = headers.findIndex(h => h.includes('wind') && h.includes('speed'));
     const snowIdx = headers.findIndex(h => h.includes('snow') && h.includes('depth'));
-    const precipIdx = headers.findIndex(h => h.includes('precip'));
+    const precipIdx = headers.findIndex(h => h.includes('precip') || h.includes('equivalent'));
+
+    console.log('Column indices:', { dateIdx, timeIdx, tempIdx, windIdx, snowIdx, precipIdx });
 
     // Parse numeric value helper
     const parseValue = (val) => {
         if (!val || val === 'M' || val === 'MM' || val === '') return null;
-        const num = parseFloat(val);
+        // Handle wind speed with gusts (e.g., "28G38" -> 28)
+        const cleanVal = String(val).split('G')[0];
+        const num = parseFloat(cleanVal);
         return isNaN(num) ? null : num;
     };
 
@@ -141,13 +149,30 @@ function parseWeatherData(data) {
 
             if (!timestampStr) continue;
 
-            // Parse timestamp (remove timezone abbreviations if present)
-            timestampStr = timestampStr.replace(/\s+(UTC|MST|MDT|PST|PDT)$/, '');
+            // Parse timestamp - convert formats like "Dec 1, 6:00 pm" to proper date
+            const now = new Date();
+            const currentYear = now.getFullYear();
+
+            // Add year to the timestamp if not present
+            if (!timestampStr.includes(currentYear)) {
+                timestampStr = timestampStr + ' ' + currentYear;
+            }
+
             const timestamp = new Date(timestampStr);
 
-            if (isNaN(timestamp.getTime())) continue;
+            // If date is invalid or in future, try previous year
+            if (isNaN(timestamp.getTime()) || timestamp > now) {
+                timestampStr = timestampStr.replace(currentYear, currentYear - 1);
+                const adjustedTimestamp = new Date(timestampStr);
+                if (!isNaN(adjustedTimestamp.getTime())) {
+                    result.timestamps.push(adjustedTimestamp);
+                } else {
+                    continue;
+                }
+            } else {
+                result.timestamps.push(timestamp);
+            }
 
-            result.timestamps.push(timestamp);
             result.temperature.push(tempIdx >= 0 ? parseValue(row[tempIdx]) : null);
             result.windSpeed.push(windIdx >= 0 ? parseValue(row[windIdx]) : null);
             result.snowDepth.push(snowIdx >= 0 ? parseValue(row[snowIdx]) : null);
@@ -157,6 +182,8 @@ function parseWeatherData(data) {
             console.warn('Error parsing row:', row, e);
         }
     }
+
+    console.log('Parsed data points:', result.timestamps.length);
 
     return result;
 }
