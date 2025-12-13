@@ -154,11 +154,22 @@ function parseWeatherData(data) {
     // Find column indices from headers
     const headers = data.headers.map(h => h.toLowerCase().replace(/\s+/g, ''));
 
+    // Check if there's a column mismatch (common with weather.gov tables)
+    // Headers may have merged "Date/Time" but data has separate date and time columns
+    const hasColumnMismatch = data.rows.length > 0 && data.rows[0].length > headers.length;
+    const dateTimeOffset = hasColumnMismatch ? 1 : 0; // Extra column for time
+
+    console.log(`Column analysis: ${headers.length} headers, ${data.rows[0]?.length || 0} data columns, mismatch: ${hasColumnMismatch}`);
+
     // Look for date/time column (could be combined or separate)
     const dateTimeIdx = headers.findIndex(h => h.includes('date') && h.includes('time'));
     const dateIdx = dateTimeIdx >= 0 ? dateTimeIdx : headers.findIndex(h => h.includes('date'));
-    const timeIdx = dateTimeIdx >= 0 ? -1 : headers.findIndex(h => h.includes('time'));
 
+    // If column mismatch, time is in the next column after date
+    const timeIdx = hasColumnMismatch ? (dateIdx >= 0 ? dateIdx + 1 : -1) :
+                   (dateTimeIdx >= 0 ? -1 : headers.findIndex(h => h.includes('time')));
+
+    // Adjust indices for other columns if there's a mismatch
     const tempIdx = headers.findIndex(h => h.includes('temp') && !h.includes('dew'));
     const windSpeedIdx = headers.findIndex(h => h.includes('wind') && h.includes('speed'));
     const windDirIdx = headers.findIndex(h => h.includes('wind') && h.includes('direction'));
@@ -167,7 +178,30 @@ function parseWeatherData(data) {
     const sweIdx = headers.findIndex(h => h.includes('equivalent'));
     const precipIdx = headers.findIndex(h => h.includes('precip') && !h.includes('snow'));
 
-    console.log('Column indices:', { dateIdx, timeIdx, tempIdx, windSpeedIdx, windDirIdx, snowDepthIdx, newSnow24hIdx, sweIdx, precipIdx });
+    // Apply offset to all indices after the date/time columns
+    const adjustIdx = (idx) => {
+        if (idx < 0) return idx;
+        return hasColumnMismatch && idx > dateIdx ? idx + dateTimeOffset : idx;
+    };
+
+    const adjustedTempIdx = adjustIdx(tempIdx);
+    const adjustedWindSpeedIdx = adjustIdx(windSpeedIdx);
+    const adjustedWindDirIdx = adjustIdx(windDirIdx);
+    const adjustedSnowDepthIdx = adjustIdx(snowDepthIdx);
+    const adjustedNewSnow24hIdx = adjustIdx(newSnow24hIdx);
+    const adjustedSweIdx = adjustIdx(sweIdx);
+    const adjustedPrecipIdx = adjustIdx(precipIdx);
+
+    console.log('Column indices:', {
+        dateIdx, timeIdx,
+        temp: adjustedTempIdx,
+        windSpeed: adjustedWindSpeedIdx,
+        windDir: adjustedWindDirIdx,
+        snowDepth: adjustedSnowDepthIdx,
+        newSnow24h: adjustedNewSnow24hIdx,
+        swe: adjustedSweIdx,
+        precip: adjustedPrecipIdx
+    });
 
     // Parse numeric value helper
     const parseValue = (val) => {
@@ -236,15 +270,15 @@ function parseWeatherData(data) {
                 result.timestamps.push(timestamp);
             }
 
-            result.temperature.push(tempIdx >= 0 ? parseValue(row[tempIdx]) : null);
-            result.windSpeed.push(windSpeedIdx >= 0 ? parseValue(row[windSpeedIdx]) : null);
-            result.windDirection.push(windDirIdx >= 0 ? row[windDirIdx] : null);
-            const rawSnow = snowDepthIdx >= 0 ? parseValue(row[snowDepthIdx]) : null;
+            result.temperature.push(adjustedTempIdx >= 0 ? parseValue(row[adjustedTempIdx]) : null);
+            result.windSpeed.push(adjustedWindSpeedIdx >= 0 ? parseValue(row[adjustedWindSpeedIdx]) : null);
+            result.windDirection.push(adjustedWindDirIdx >= 0 ? row[adjustedWindDirIdx] : null);
+            const rawSnow = adjustedSnowDepthIdx >= 0 ? parseValue(row[adjustedSnowDepthIdx]) : null;
             result.rawSnowDepth.push(rawSnow);
             result.snowDepth.push(rawSnow); // Will be smoothed later
-            result.newSnow24h.push(newSnow24hIdx >= 0 ? validateSnowfall(parseValue(row[newSnow24hIdx])) : null);
-            result.swe.push(sweIdx >= 0 ? validateSWE(parseValue(row[sweIdx])) : null);
-            result.precipitation.push(precipIdx >= 0 ? parseValue(row[precipIdx]) : null);
+            result.newSnow24h.push(adjustedNewSnow24hIdx >= 0 ? validateSnowfall(parseValue(row[adjustedNewSnow24hIdx])) : null);
+            result.swe.push(adjustedSweIdx >= 0 ? validateSWE(parseValue(row[adjustedSweIdx])) : null);
+            result.precipitation.push(adjustedPrecipIdx >= 0 ? parseValue(row[adjustedPrecipIdx]) : null);
 
         } catch (e) {
             console.warn('Error parsing row:', row, e);
