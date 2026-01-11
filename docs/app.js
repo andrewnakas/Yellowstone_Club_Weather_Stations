@@ -157,16 +157,25 @@ function parseWeatherData(data) {
     // Check if there's a column mismatch (common with weather.gov tables)
     // Headers may have merged "Date/Time" but data has separate date and time columns
     const hasColumnMismatch = data.rows.length > 0 && data.rows[0].length > headers.length;
-    const dateTimeOffset = hasColumnMismatch ? 1 : 0; // Extra column for time
 
-    console.log(`Column analysis: ${headers.length} headers, ${data.rows[0]?.length || 0} data columns, mismatch: ${hasColumnMismatch}`);
+    // Also check if first two data columns look like date and time (e.g., "12 13", "1100")
+    // This handles cases where mtavalanche data is merged and splits date/time despite matching column count
+    const firstRow = data.rows.length > 0 ? data.rows[0] : [];
+    const looksLikeDateTimeSplit = firstRow.length >= 2 &&
+                                   /^\d{1,2}\s+\d{1,2}$/.test(firstRow[0]) && // "12 13" format
+                                   /^\d{3,4}$/.test(firstRow[1]); // "1100" format
+
+    const hasDateTimeSplit = hasColumnMismatch || looksLikeDateTimeSplit;
+    const dateTimeOffset = hasDateTimeSplit ? 1 : 0; // Extra column for time
+
+    console.log(`Column analysis: ${headers.length} headers, ${data.rows[0]?.length || 0} data columns, mismatch: ${hasColumnMismatch}, dateTimeSplit: ${looksLikeDateTimeSplit}`);
 
     // Look for date/time column (could be combined or separate)
     const dateTimeIdx = headers.findIndex(h => h.includes('date') && h.includes('time'));
     const dateIdx = dateTimeIdx >= 0 ? dateTimeIdx : headers.findIndex(h => h.includes('date'));
 
-    // If column mismatch, time is in the next column after date
-    const timeIdx = hasColumnMismatch ? (dateIdx >= 0 ? dateIdx + 1 : -1) :
+    // If date/time is split, time is in the next column after date
+    const timeIdx = hasDateTimeSplit ? (dateIdx >= 0 ? dateIdx + 1 : -1) :
                    (dateTimeIdx >= 0 ? -1 : headers.findIndex(h => h.includes('time')));
 
     // Adjust indices for other columns if there's a mismatch
@@ -181,7 +190,7 @@ function parseWeatherData(data) {
     // Apply offset to all indices after the date/time columns
     const adjustIdx = (idx) => {
         if (idx < 0) return idx;
-        return hasColumnMismatch && idx > dateIdx ? idx + dateTimeOffset : idx;
+        return hasDateTimeSplit && idx > dateIdx ? idx + dateTimeOffset : idx;
     };
 
     const adjustedTempIdx = adjustIdx(tempIdx);
