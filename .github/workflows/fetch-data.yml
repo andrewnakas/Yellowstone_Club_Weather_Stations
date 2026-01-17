@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - claude/debug-data-updates-01L8SLUZWRa4ygsHszjje43p
 
 jobs:
   fetch-data:
