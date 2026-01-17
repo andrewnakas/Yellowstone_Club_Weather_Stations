@@ -1,7 +1,10 @@
 {
   "station_id": "YCGBR",
   "station_name": "Great Bear",
-  "timestamp": "2026-01-17T18:12:59.309172",
-  "error": "net::ERR_TUNNEL_CONNECTION_FAILED at https://www.weather.gov/wrh/timeseries?site=YCGBR&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot=",
+  "timestamp": "2026-01-17T18:15:11.245555",
+  "data": {
+    "headers": [],
+    "rows": []
+  },
   "url": "https://www.weather.gov/wrh/timeseries?site=YCGBR&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
