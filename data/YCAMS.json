@@ -1,7 +1,7 @@
 {
   "station_id": "YCAMS",
   "station_name": "American Spirit",
-  "timestamp": "2026-05-02T09:02:01.673994",
+  "timestamp": "2026-05-02T10:46:21.452160",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -129,15 +129,6 @@
         "6",
         "W",
         "3G6"
-      ],
-      [
-        "Apr 25, 4:00 am",
-        "12",
-        "6",
-        "78",
-        "2",
-        "WNW",
-        "6G9"
       ]
     ]
   },
