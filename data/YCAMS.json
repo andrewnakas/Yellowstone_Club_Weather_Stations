@@ -1,28 +1,10 @@
 {
   "station_id": "YCAMS",
   "station_name": "American Spirit",
-  "timestamp": "2026-05-02T22:36:28.760172",
+  "timestamp": "2026-05-02T23:39:13.010790",
   "data": {
-    "headers": [
-      "Date/Time\u00a0(L)",
-      "Temp.\u00a0(\u00b0F)",
-      "DewPoint(\u00b0F)",
-      "RelativeHumidity(%)",
-      "WindChill(\u00b0F)",
-      "WindDirection",
-      "WindSpeed(mph)"
-    ],
-    "rows": [
-      [
-        "Apr 25, 5:00 pm",
-        "24",
-        "12",
-        "60",
-        "19",
-        "WNW",
-        "4G13"
-      ]
-    ]
+    "headers": [],
+    "rows": []
   },
   "url": "https://www.weather.gov/wrh/timeseries?site=YCAMS&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
