@@ -1,7 +1,7 @@
 {
   "station_id": "YCBAS",
   "station_name": "Base",
-  "timestamp": "2026-06-18T19:34:17.078895",
+  "timestamp": "2026-06-18T22:07:14.563622",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -14,6 +14,26 @@
       "Snow/WaterEquivalent(in)"
     ],
     "rows": [
+      [
+        "Jun 18, 3:00 pm",
+        "64",
+        "31",
+        "29",
+        "",
+        "WNW",
+        "6G17",
+        "0.00"
+      ],
+      [
+        "Jun 18, 2:00 pm",
+        "62",
+        "30",
+        "30",
+        "",
+        "WSW",
+        "6G13",
+        "0.00"
+      ],
       [
         "Jun 18, 1:00 pm",
         "60",
