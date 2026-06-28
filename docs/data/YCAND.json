@@ -1,7 +1,7 @@
 {
   "station_id": "YCAND",
   "station_name": "Andesite",
-  "timestamp": "2026-06-28T17:07:15.491825",
+  "timestamp": "2026-06-28T19:17:28.747481",
   "error": "Timeout 60000ms exceeded.",
   "url": "https://www.weather.gov/wrh/timeseries?site=YCAND&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
