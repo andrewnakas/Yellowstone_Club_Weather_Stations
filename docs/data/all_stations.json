@@ -2,35 +2,35 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-06-28T15:15:41.826527",
+    "timestamp": "2026-06-28T17:05:11.575076",
     "error": "Timeout 60000ms exceeded.",
     "url": "https://www.weather.gov/wrh/timeseries?site=YCTIM&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
   },
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-06-28T15:17:45.143386",
+    "timestamp": "2026-06-28T17:07:15.491825",
     "error": "Timeout 60000ms exceeded.",
     "url": "https://www.weather.gov/wrh/timeseries?site=YCAND&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
   },
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-06-28T15:19:48.164284",
+    "timestamp": "2026-06-28T17:09:18.471701",
     "error": "Timeout 60000ms exceeded.",
     "url": "https://www.weather.gov/wrh/timeseries?site=YCAMS&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
   },
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-06-28T15:21:51.217054",
+    "timestamp": "2026-06-28T17:11:21.505168",
     "error": "Timeout 60000ms exceeded.",
     "url": "https://www.weather.gov/wrh/timeseries?site=YCBAS&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
   },
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-06-28T15:23:54.283246",
+    "timestamp": "2026-06-28T17:13:24.586601",
     "error": "Timeout 60000ms exceeded.",
     "url": "https://www.weather.gov/wrh/timeseries?site=YCGBR&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
   }
