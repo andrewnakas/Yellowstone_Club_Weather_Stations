@@ -1,7 +1,7 @@
 {
   "station_id": "YCAMS",
   "station_name": "American Spirit",
-  "timestamp": "2026-07-07T17:09:53.049984",
+  "timestamp": "2026-07-07T19:49:17.113571",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -13,6 +13,33 @@
       "WindSpeed(mph)"
     ],
     "rows": [
+      [
+        "Jul 7, 1:00 pm",
+        "62",
+        "37",
+        "40",
+        "",
+        "NNW",
+        "12G25"
+      ],
+      [
+        "Jul 7, 12:00 pm",
+        "61",
+        "39",
+        "45",
+        "",
+        "NNW",
+        "10G25"
+      ],
+      [
+        "Jul 7, 11:00 am",
+        "60",
+        "40",
+        "48",
+        "",
+        "NNW",
+        "11G24"
+      ],
       [
         "Jul 7, 10:00 am",
         "61",
