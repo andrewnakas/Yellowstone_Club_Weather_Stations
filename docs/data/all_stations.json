@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-07-11T21:44:11.660236",
+    "timestamp": "2026-07-11T22:42:58.009087",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -16,6 +16,17 @@
         "Snow/WaterEquivalent(in)"
       ],
       "rows": [
+        [
+          "Jul 11, 4:00 pm",
+          "82",
+          "32",
+          "16",
+          "80",
+          "",
+          "S",
+          "15G32",
+          "0.00"
+        ],
         [
           "Jul 11, 3:00 pm",
           "84",
@@ -1852,17 +1863,6 @@
           "SSW",
           "11G25",
           "0.00"
-        ],
-        [
-          "Jul 4, 4:00 pm",
-          "72",
-          "30",
-          "21",
-          "",
-          "",
-          "SW",
-          "11G24",
-          "0.00"
         ]
       ]
     },
@@ -1871,7 +1871,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-07-11T21:45:01.670545",
+    "timestamp": "2026-07-11T22:43:48.315280",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -1881,6 +1881,20 @@
         "WindSpeed(mph)"
       ],
       "rows": [
+        [
+          "Jul 11, 4:00 pm",
+          "76",
+          "",
+          "S",
+          "13G26"
+        ],
+        [
+          "Jul 11, 3:00 pm",
+          "76",
+          "",
+          "S",
+          "11G22"
+        ],
         [
           "Jul 11, 2:00 pm",
           "76",
@@ -3042,13 +3056,6 @@
           "",
           "S",
           "8G21"
-        ],
-        [
-          "Jul 4, 4:00 pm",
-          "67",
-          "",
-          "SSW",
-          "6G17"
         ]
       ]
     },
@@ -3057,7 +3064,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-07-11T21:45:52.045320",
+    "timestamp": "2026-07-11T22:44:38.544536",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -4571,15 +4578,6 @@
           "",
           "NW",
           "7G25"
-        ],
-        [
-          "Jul 4, 4:00 pm",
-          "66",
-          "27",
-          "23",
-          "",
-          "NNW",
-          "7G20"
         ]
       ]
     },
@@ -4588,7 +4586,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-07-11T21:46:42.455607",
+    "timestamp": "2026-07-11T22:45:28.493146",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -4602,6 +4600,17 @@
         "Snow/WaterEquivalent(in)"
       ],
       "rows": [
+        [
+          "Jul 11, 4:00 pm",
+          "84",
+          "36",
+          "18",
+          "81",
+          "",
+          "WSW",
+          "6G18",
+          "0.00"
+        ],
         [
           "Jul 11, 3:00 pm",
           "84",
@@ -6438,17 +6447,6 @@
           "WSW",
           "6G15",
           "0.00"
-        ],
-        [
-          "Jul 4, 4:00 pm",
-          "75",
-          "37",
-          "25",
-          "",
-          "",
-          "WSW",
-          "6G19",
-          "0.00"
         ]
       ]
     },
@@ -6457,7 +6455,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-07-11T21:47:32.386543",
+    "timestamp": "2026-07-11T22:46:18.478210",
     "data": {
       "headers": [],
       "rows": []
