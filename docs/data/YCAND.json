@@ -1,7 +1,7 @@
 {
   "station_id": "YCAND",
   "station_name": "Andesite",
-  "timestamp": "2026-07-14T21:55:07.387108",
+  "timestamp": "2026-07-14T22:54:55.332221",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -11,6 +11,13 @@
       "WindSpeed(mph)"
     ],
     "rows": [
+      [
+        "Jul 14, 4:00 pm",
+        "79",
+        "",
+        "SW",
+        "5G13"
+      ],
       [
         "Jul 14, 3:00 pm",
         "75",
@@ -1179,13 +1186,6 @@
         "",
         "WNW",
         "10G21"
-      ],
-      [
-        "Jul 7, 4:00 pm",
-        "67",
-        "",
-        "W",
-        "10G20"
       ]
     ]
   },
