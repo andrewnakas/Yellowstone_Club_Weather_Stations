@@ -1,7 +1,7 @@
 {
   "station_id": "YCTIM",
   "station_name": "Timberline",
-  "timestamp": "2026-07-15T21:03:12.996409",
+  "timestamp": "2026-07-15T21:55:18.938483",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -15,6 +15,17 @@
       "Snow/WaterEquivalent(in)"
     ],
     "rows": [
+      [
+        "Jul 15, 3:00 pm",
+        "62",
+        "57",
+        "83",
+        "",
+        "",
+        "SSE",
+        "5G18",
+        "0.00"
+      ],
       [
         "Jul 15, 2:00 pm",
         "54",
