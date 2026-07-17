@@ -1,7 +1,7 @@
 {
   "station_id": "YCBAS",
   "station_name": "Base",
-  "timestamp": "2026-07-17T22:08:23.558780",
+  "timestamp": "2026-07-17T22:46:25.227126",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -14,6 +14,16 @@
       "Snow/WaterEquivalent(in)"
     ],
     "rows": [
+      [
+        "Jul 17, 4:00 pm",
+        "77",
+        "51",
+        "40",
+        "",
+        "NW",
+        "4G9",
+        "0.00"
+      ],
       [
         "Jul 17, 3:00 pm",
         "78",
