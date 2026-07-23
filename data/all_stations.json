@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-07-23T21:04:01.776930",
+    "timestamp": "2026-07-23T22:05:53.305887",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -1624,16 +1624,6 @@
           "SW",
           "5G10",
           "0.00"
-        ],
-        [
-          "Jul 16, 4:00 pm",
-          "73",
-          "45",
-          "37",
-          "",
-          "NNE",
-          "3G9",
-          "0.00"
         ]
       ]
     },
@@ -1642,7 +1632,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-07-23T21:04:53.100850",
+    "timestamp": "2026-07-23T22:06:43.887061",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -2778,13 +2768,6 @@
           "",
           "W",
           "4G10"
-        ],
-        [
-          "Jul 16, 4:00 pm",
-          "72",
-          "",
-          "NW",
-          "6G13"
         ]
       ]
     },
@@ -2793,7 +2776,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-07-23T21:05:43.640488",
+    "timestamp": "2026-07-23T22:07:34.484820",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -4091,14 +4074,6 @@
           "42",
           "NNW",
           "8G14"
-        ],
-        [
-          "Jul 16, 4:00 pm",
-          "72",
-          "42",
-          "34",
-          "NE",
-          "6G12"
         ]
       ]
     },
@@ -4107,7 +4082,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-07-23T21:06:34.226227",
+    "timestamp": "2026-07-23T22:08:25.127121",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -5729,16 +5704,6 @@
           "WNW",
           "2G8",
           "0.00"
-        ],
-        [
-          "Jul 16, 4:00 pm",
-          "80",
-          "50",
-          "35",
-          "79",
-          "ESE",
-          "3G8",
-          "0.00"
         ]
       ]
     },
@@ -5747,7 +5712,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-07-23T21:07:24.817330",
+    "timestamp": "2026-07-23T22:09:15.728873",
     "data": {
       "headers": [],
       "rows": []
