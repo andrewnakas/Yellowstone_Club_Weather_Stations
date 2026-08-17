@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-08-17T16:19:52.755655",
+    "timestamp": "2026-08-17T16:33:12.862474",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -389,6 +389,16 @@
           "0.00",
           "-6999",
           "-6999"
+        ],
+        [
+          "Aug 17, 10:00 am",
+          "58",
+          "40",
+          "51",
+          "",
+          "SW",
+          "11G18",
+          "0.00"
         ],
         [
           "Aug 17, 9:00 am",
@@ -2072,7 +2082,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-08-17T16:19:59.353424",
+    "timestamp": "2026-08-17T16:33:19.185551",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -2331,6 +2341,13 @@
           "57",
           "-6999",
           "-6999"
+        ],
+        [
+          "Aug 17, 10:00 am",
+          "57",
+          "",
+          "SSE",
+          "2G13"
         ],
         [
           "Aug 17, 9:00 am",
@@ -3513,7 +3530,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-08-17T16:20:05.093413",
+    "timestamp": "2026-08-17T16:33:25.068530",
     "data": {
       "headers": [],
       "rows": []
@@ -3523,7 +3540,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-08-17T16:20:11.045788",
+    "timestamp": "2026-08-17T16:33:31.322668",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -3861,6 +3878,17 @@
           "0.00",
           "-6999",
           "-6999"
+        ],
+        [
+          "Aug 17, 10:00 am",
+          "58",
+          "45",
+          "63",
+          "",
+          "",
+          "E",
+          "0G3",
+          "0.00"
         ],
         [
           "Aug 17, 9:00 am",
@@ -5711,7 +5739,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-08-17T16:20:16.708186",
+    "timestamp": "2026-08-17T16:33:37.072590",
     "data": {
       "headers": [],
       "rows": []

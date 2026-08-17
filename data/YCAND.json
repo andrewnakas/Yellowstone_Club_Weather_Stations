@@ -1,7 +1,7 @@
 {
   "station_id": "YCAND",
   "station_name": "Andesite",
-  "timestamp": "2026-08-17T16:19:59.353424",
+  "timestamp": "2026-08-17T16:33:19.185551",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -260,6 +260,13 @@
         "57",
         "-6999",
         "-6999"
+      ],
+      [
+        "Aug 17, 10:00 am",
+        "57",
+        "",
+        "SSE",
+        "2G13"
       ],
       [
         "Aug 17, 9:00 am",
