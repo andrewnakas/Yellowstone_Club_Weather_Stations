@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-08-18T14:30:39.478597",
+    "timestamp": "2026-08-18T15:41:54.080747",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -2059,16 +2059,6 @@
           "SW",
           "7G13",
           "0.00"
-        ],
-        [
-          "Aug 11, 9:00 am",
-          "60",
-          "29",
-          "31",
-          "",
-          "SSW",
-          "5G10",
-          "0.00"
         ]
       ]
     },
@@ -2082,7 +2072,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-08-18T14:30:45.548797",
+    "timestamp": "2026-08-18T15:42:01.292345",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -3510,13 +3500,6 @@
           "",
           "SE",
           "2G5"
-        ],
-        [
-          "Aug 11, 9:00 am",
-          "59",
-          "",
-          "ESE",
-          "4G6"
         ]
       ]
     },
@@ -3530,7 +3513,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-08-18T14:30:51.281741",
+    "timestamp": "2026-08-18T15:42:08.462163",
     "data": {
       "headers": [],
       "rows": []
@@ -3540,7 +3523,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-08-18T14:30:57.569411",
+    "timestamp": "2026-08-18T15:42:14.112733",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -5715,17 +5698,6 @@
           "ESE",
           "2G6",
           "0.00"
-        ],
-        [
-          "Aug 11, 9:00 am",
-          "58",
-          "40",
-          "51",
-          "",
-          "",
-          "NNE",
-          "0G2",
-          "0.00"
         ]
       ]
     },
@@ -5739,7 +5711,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-08-18T14:31:04.307954",
+    "timestamp": "2026-08-18T15:42:19.912126",
     "data": {
       "headers": [],
       "rows": []
