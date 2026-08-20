@@ -1,7 +1,10 @@
 {
   "station_id": "YCAMS",
   "station_name": "American Spirit",
-  "timestamp": "2026-08-20T22:24:19.901918",
-  "error": "Timeout 60000ms exceeded.",
+  "timestamp": "2026-08-20T23:20:54.385867",
+  "data": {
+    "headers": [],
+    "rows": []
+  },
   "url": "https://www.weather.gov/wrh/timeseries?site=YCAMS&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
