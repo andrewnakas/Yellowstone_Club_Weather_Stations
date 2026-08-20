@@ -1,7 +1,7 @@
 {
   "station_id": "YCBAS",
   "station_name": "Base",
-  "timestamp": "2026-08-20T20:27:04.179895",
+  "timestamp": "2026-08-20T21:27:50.633078",
   "error": "Timeout 60000ms exceeded.",
   "url": "https://www.weather.gov/wrh/timeseries?site=YCBAS&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
