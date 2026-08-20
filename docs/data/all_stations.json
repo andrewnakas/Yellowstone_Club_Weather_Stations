@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-08-20T17:23:41.415315",
+    "timestamp": "2026-08-20T18:31:54.113036",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -2039,16 +2039,6 @@
           "SSW",
           "9G15",
           "0.00"
-        ],
-        [
-          "Aug 13, 12:00 pm",
-          "57",
-          "42",
-          "58",
-          "",
-          "SSW",
-          "7G13",
-          "0.00"
         ]
       ]
     },
@@ -2062,7 +2052,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-08-20T17:23:48.329298",
+    "timestamp": "2026-08-20T18:32:00.813248",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -3476,13 +3466,6 @@
           "",
           "SW",
           "3G8"
-        ],
-        [
-          "Aug 13, 12:00 pm",
-          "55",
-          "",
-          "NW",
-          "3G7"
         ]
       ]
     },
@@ -3496,7 +3479,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-08-20T17:23:54.030095",
+    "timestamp": "2026-08-20T18:32:06.618010",
     "data": {
       "headers": [],
       "rows": []
@@ -3506,7 +3489,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-08-20T17:23:59.656974",
+    "timestamp": "2026-08-20T18:32:12.340730",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -5493,16 +5476,6 @@
           "E",
           "3G9",
           "0.00"
-        ],
-        [
-          "Aug 13, 12:00 pm",
-          "62",
-          "51",
-          "67",
-          "",
-          "ENE",
-          "3G7",
-          "0.00"
         ]
       ]
     },
@@ -5516,7 +5489,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-08-20T17:24:05.472360",
+    "timestamp": "2026-08-20T18:32:17.939406",
     "data": {
       "headers": [],
       "rows": []
