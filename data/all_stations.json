@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-08-20T18:31:54.113036",
+    "timestamp": "2026-08-20T19:26:24.591977",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -2029,16 +2029,6 @@
           "SSW",
           "6G14",
           "0.00"
-        ],
-        [
-          "Aug 13, 1:00 pm",
-          "62",
-          "42",
-          "48",
-          "",
-          "SSW",
-          "9G15",
-          "0.00"
         ]
       ]
     },
@@ -2052,7 +2042,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-08-20T18:32:00.813248",
+    "timestamp": "2026-08-20T19:26:32.173557",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -3459,13 +3449,6 @@
           "",
           "NNW",
           "2G7"
-        ],
-        [
-          "Aug 13, 1:00 pm",
-          "60",
-          "",
-          "SW",
-          "3G8"
         ]
       ]
     },
@@ -3479,7 +3462,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-08-20T18:32:06.618010",
+    "timestamp": "2026-08-20T19:26:37.981468",
     "data": {
       "headers": [],
       "rows": []
@@ -3489,7 +3472,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-08-20T18:32:12.340730",
+    "timestamp": "2026-08-20T19:26:44.036484",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -5466,16 +5449,6 @@
           "E",
           "3G10",
           "0.00"
-        ],
-        [
-          "Aug 13, 1:00 pm",
-          "65",
-          "51",
-          "60",
-          "",
-          "E",
-          "3G9",
-          "0.00"
         ]
       ]
     },
@@ -5489,7 +5462,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-08-20T18:32:17.939406",
+    "timestamp": "2026-08-20T19:26:50.076187",
     "data": {
       "headers": [],
       "rows": []

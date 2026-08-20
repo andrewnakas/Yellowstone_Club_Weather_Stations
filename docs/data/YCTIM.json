@@ -1,7 +1,7 @@
 {
   "station_id": "YCTIM",
   "station_name": "Timberline",
-  "timestamp": "2026-08-20T18:31:54.113036",
+  "timestamp": "2026-08-20T19:26:24.591977",
   "data": {
     "headers": [
       "Date/Time\u00a0(L)",
@@ -2027,16 +2027,6 @@
         "",
         "SSW",
         "6G14",
-        "0.00"
-      ],
-      [
-        "Aug 13, 1:00 pm",
-        "62",
-        "42",
-        "48",
-        "",
-        "SSW",
-        "9G15",
         "0.00"
       ]
     ]
