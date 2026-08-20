@@ -1,10 +1,7 @@
 {
   "station_id": "YCGBR",
   "station_name": "Great Bear",
-  "timestamp": "2026-08-20T19:26:50.076187",
-  "data": {
-    "headers": [],
-    "rows": []
-  },
+  "timestamp": "2026-08-20T20:28:07.305405",
+  "error": "Timeout 60000ms exceeded.",
   "url": "https://www.weather.gov/wrh/timeseries?site=YCGBR&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
