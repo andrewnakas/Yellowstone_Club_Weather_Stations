@@ -1,7 +1,7 @@
 {
   "station_id": "YCTIM",
   "station_name": "Timberline",
-  "timestamp": "2026-08-20T21:23:40.098518",
+  "timestamp": "2026-08-20T22:22:12.417073",
   "error": "Timeout 60000ms exceeded.",
   "url": "https://www.weather.gov/wrh/timeseries?site=YCTIM&hours=168&units=english&chart=on&headers=on&obs=tabular&hourly=false&pview=full&font=12&plot="
 }
