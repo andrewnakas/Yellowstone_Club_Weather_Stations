@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-08-20T16:28:36.713480",
+    "timestamp": "2026-08-20T17:23:41.415315",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -2049,16 +2049,6 @@
           "SSW",
           "7G13",
           "0.00"
-        ],
-        [
-          "Aug 13, 11:00 am",
-          "59",
-          "46",
-          "63",
-          "",
-          "SSW",
-          "7G13",
-          "0.00"
         ]
       ]
     },
@@ -2072,7 +2062,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-08-20T16:28:43.084185",
+    "timestamp": "2026-08-20T17:23:48.329298",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -3493,13 +3483,6 @@
           "",
           "NW",
           "3G7"
-        ],
-        [
-          "Aug 13, 11:00 am",
-          "57",
-          "",
-          "NNW",
-          "2G8"
         ]
       ]
     },
@@ -3513,7 +3496,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-08-20T16:28:48.927687",
+    "timestamp": "2026-08-20T17:23:54.030095",
     "data": {
       "headers": [],
       "rows": []
@@ -3523,7 +3506,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-08-20T16:28:54.831768",
+    "timestamp": "2026-08-20T17:23:59.656974",
     "data": {
       "headers": [
         "Date/Time\u00a0(L)",
@@ -5520,16 +5503,6 @@
           "ENE",
           "3G7",
           "0.00"
-        ],
-        [
-          "Aug 13, 11:00 am",
-          "63",
-          "50",
-          "63",
-          "",
-          "ESE",
-          "2G6",
-          "0.00"
         ]
       ]
     },
@@ -5543,7 +5516,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-08-20T16:29:00.506185",
+    "timestamp": "2026-08-20T17:24:05.472360",
     "data": {
       "headers": [],
       "rows": []
