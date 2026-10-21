@@ -2,7 +2,7 @@
   "YCTIM": {
     "station_id": "YCTIM",
     "station_name": "Timberline",
-    "timestamp": "2026-10-21T01:13:16.125556",
+    "timestamp": "2026-10-21T06:57:16.462068",
     "data": {
       "headers": [],
       "rows": []
@@ -12,7 +12,7 @@
   "YCAND": {
     "station_id": "YCAND",
     "station_name": "Andesite",
-    "timestamp": "2026-10-21T01:13:22.337331",
+    "timestamp": "2026-10-21T06:57:22.597215",
     "data": {
       "headers": [],
       "rows": []
@@ -22,7 +22,7 @@
   "YCAMS": {
     "station_id": "YCAMS",
     "station_name": "American Spirit",
-    "timestamp": "2026-10-21T01:13:27.833982",
+    "timestamp": "2026-10-21T06:57:28.358890",
     "data": {
       "headers": [],
       "rows": []
@@ -32,7 +32,7 @@
   "YCBAS": {
     "station_id": "YCBAS",
     "station_name": "Base",
-    "timestamp": "2026-10-21T01:13:33.373891",
+    "timestamp": "2026-10-21T06:57:34.043787",
     "data": {
       "headers": [],
       "rows": []
@@ -42,7 +42,7 @@
   "YCGBR": {
     "station_id": "YCGBR",
     "station_name": "Great Bear",
-    "timestamp": "2026-10-21T01:13:38.869304",
+    "timestamp": "2026-10-21T06:57:40.527909",
     "data": {
       "headers": [],
       "rows": []
